@@ -59,6 +59,27 @@ d) Write down some thoughts about what might explain these increases and decreas
 See [here](https://rpubs.com/dkane/week-3) for my answers. No need to copy exactly what I have done! Make yours better.
 
 
+```{r, 1a}
+
+sep_diff <- left_join(sep_old, sep_new, by = "id",
+                      suffix = c("_old","_new"))
+
+sep_diff %>%
+  mutate(u_grad_diff = u_grad_new - u_grad_old) %>%
+  arrange(desc(u_grad_diff)) %>%
+  head(5) %>%
+  select(title_old, name_old, u_grad_new, u_grad_diff) %>%
+  rename("Number" = title_old,
+         "Title" = name_old, 
+         "Enrollment" = u_grad_new,
+         "Change" = u_grad_diff) %>%
+gt()
+
+```
+
+
+
+
 
 ## Scene 2
 
